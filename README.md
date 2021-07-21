@@ -1,4 +1,6 @@
-# finteca-timeline-app
+# Finteca technical test
+
+Technical test for Finteca startup. It consists of creating a timeline that allows adding and editing elements using Vue and putting Axios and Vuex into practice.
 
 ## Project setup
 ```
