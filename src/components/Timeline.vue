@@ -20,7 +20,10 @@ export default {
     TimelineItem,
   },
   props: {
-    timelineItems: [],
+    timelineItems: {
+      type: Array,
+      default: function() { return [] }
+    },
   },
 };
 </script>
