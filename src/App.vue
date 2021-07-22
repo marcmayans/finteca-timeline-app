@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Finteca Timeline</h1>
+  <TimelineForm @item-submitted="addTimelineItem" />
+  <Loader v-if="isLoading" />
+  <Timeline :timelineItems="timelineItems" />
+  <notifications position="bottom right" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Loader from "./components/Loader.vue";
+import TimelineForm from "./components/TimelineForm.vue";
+import Timeline from "./components/Timeline.vue";
+
+import { mapState } from "vuex";
+import timelineService from "./services/timeline";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Loader,
+    TimelineForm,
+    Timeline,
+  },
+  data() {
+    return {
+      timelineItems: [],
+    };
+  },
+  computed: mapState(["isLoading"]),
+  methods: {
+    callTest() {
+      timelineService.addElement({});
+    },
+    addTimelineItem(item) {
+      this.timelineItems.unshift(item);
+    },
+  },
+  created() {
+    document.title = "Finteca Timeline";
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
